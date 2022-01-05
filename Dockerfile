@@ -4,11 +4,16 @@ FROM archlinux/archlinux:latest
 RUN pacman -Syu
 
 # Setup yay for AUR support - https://www.debugpoint.com/2021/01/install-yay-arch/#install-yay-arch
-# RUN pacman -S base-devel git
-# RUN cd /opt
-# RUN git clone https://aur.archlinux.org/yay.git
+RUN yes | pacman -S git
+RUN pacman -S base-devel --noconfirm
+RUN cd /opt
+RUN git clone https://aur.archlinux.org/yay.git
 # RUN cd yay
+# RUN useradd -m test
+# RUN su test
 # RUN makepkg -si
+# RUN exit
+# RUN userdel test
 # RUN yay -Syu
 # RUN cd
 
