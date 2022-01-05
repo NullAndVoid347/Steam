@@ -13,9 +13,9 @@ RUN pacman -Syu
 # RUN cd
 
 # Install KDE
-RUN pacman -S plasma-desktop
-RUN pacman -S plasma-wayland-session
-RUN pacman -S egl-wayland
+# RUN pacman -S plasma-desktop
+# RUN pacman -S plasma-wayland-session
+# RUN pacman -S egl-wayland
 
 # Install and setup VNC - https://wiki.archlinux.org/title/TigerVNC#Installation - https://www.youtube.com/watch?v=w1HS_xVnFFo
 RUN pacman -S tigervnc
