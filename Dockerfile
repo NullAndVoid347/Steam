@@ -18,11 +18,11 @@ RUN pacman -Syu
 # RUN pacman -S egl-wayland
 
 # Install and setup VNC - https://wiki.archlinux.org/title/TigerVNC#Installation - https://www.youtube.com/watch?v=w1HS_xVnFFo
-RUN pacman -S tigervnc
+#RUN pacman -S tigervnc
 
 
 # Install Steam/gaming stuff
-RUN pacman -S steam
+#RUN pacman -S steam
 #RUN yay -S mangohud
 #RUN yay -S goverlay-bin
 
