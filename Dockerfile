@@ -13,12 +13,12 @@ RUN echo "nonroot ALL=(ALL) NOPASSWD: /usr/bin/pacman" >> /etc/sudoers &&\
     echo "nonroot ALL=(ALL) NOPASSWD: /usr/bin/yay" >> /etc/sudoers
 USER nonroot
 RUN cd &&\
-    mkdir something &&\
     git clone https://aur.archlinux.org/yay.git &&\
     cd yay &&\
     makepkg -si --noconfirm
 RUN yay -Syu
 USER root
+RUN cd
 
 # # Install KDE
 RUN pacman -S plasma-desktop plasma-wayland-session egl-wayland --noconfirm
@@ -28,9 +28,13 @@ RUN pacman -S plasma-desktop plasma-wayland-session egl-wayland --noconfirm
 
 
 # Install Steam/gaming stuff
-#RUN pacman -S steam --noconfirm
-RUN yay -S steam mangohud goverlay-bin protonup-qt --noconfirm
-
+# RUN sed -i 's/#\[multilib]/[multilib]/g' /etc/pacman.conf &&\
+#     sed -i 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' /etc/pacman.conf
+RUN echo "[multilib]" >> /etc/pacman.conf &&\
+    echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+RUN pacman -Syu --noconfirm
+RUN pacman -S steam --noconfirm
+#RUN yay -S mangohud goverlay-bin protonup-qt --noconfirm
 
 
 # Maybe enable ssh - https://manjaro.site/enable-ssh-root-login-arch-linux-2017/
